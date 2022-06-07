@@ -20,7 +20,7 @@ public class Task2 {
         }
 
         //задаем выражение для поиска
-        String search = args[0];
+        String search = (args[0]);
         Pattern regex = Pattern.compile(search);
 
         //путь для создания файла в новой папке, куда будет записан результат
