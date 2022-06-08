@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Task3 {
-    public static void main(String[] args) throws Exception {
+    public static void vstavka_razdel(String razd, String path, String pathName) throws Exception {
 
         long startTime = System.currentTimeMillis();
         String patternWord = "((?<=\\w\\s:)\\s)"; //для отделения строк с "INFO : "
@@ -13,17 +13,17 @@ public class Task3 {
         Pattern regexTab = Pattern.compile(patternTab);
         String patternS = "(\\s)";
         Pattern regexS = Pattern.compile(patternS);
-        Matcher matcherWord, matcherTab, matcherS, matcher4;
-        String line, newLine, endLine, razd;
+        Matcher matcherWord, matcherTab, matcherS;
+        String line, newLine, endLine;
         int numTab, numWord;
         boolean boolWord, boolTab;
-        razd = args[0];
+
 
         Check_File check_file = new Check_File();
-        ArrayList arrayList = check_file.chek_file(args[1]);
+        ArrayList arrayList = check_file.chek_file(path);
 
         //создание новой папки
-        String path2 = args[1] + "\\" + "Task3\\";
+        String path2 = path + "\\" + "Task3\\";
         File D = new File(path2);
         boolean D1 = D.mkdir();
         if(!D1){
@@ -33,14 +33,14 @@ public class Task3 {
         //String path2 = "D:\\testri\\homework_java_2\\homework\\search1.txt";
 
         //путь для создания файла в новой папке, куда будет записан результат
-        path2 = path2 + args[2] + ".csv";
+        path2 = path2 + pathName + ".csv";
         FileWriter writer = new FileWriter(path2);
         BufferedWriter bufferedWriter = new BufferedWriter(writer);
 
         //проходим по массиву подходящих файлов
         for (Object file : arrayList) {
             String filesName = String.valueOf(file);
-            String path1 = args[1] + "\\" + filesName;
+            String path1 = path + "\\" + filesName;
             FileInputStream fin = new FileInputStream(path1);
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fin, "utf-8"));
 
