@@ -1,4 +1,5 @@
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -9,7 +10,7 @@ public class Task2 {
         long startTime = System.currentTimeMillis();
         //задаем выражение для поиска
         String search = (args[0]);
-        if (search.equals(";") | search.equals(":") | search.equals("\'") | search.equals("\"") | search.equals(",") | search.equals(".") | search.equals("`")) {
+        if (search.equals(";") | search.equals(":") | search.equals("'") | search.equals("\"") | search.equals(",") | search.equals(".") | search.equals("`")) {
             Task3.vstavka_razdel(args[0], args[1], args[2]);
         } else {
             Pattern regex = Pattern.compile(search);
@@ -36,7 +37,7 @@ public class Task2 {
                 String filesName = String.valueOf(file);
                 String path1 = args[1] + "\\" + filesName;
                 FileInputStream fin = new FileInputStream(path1);
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fin, "utf-8"));
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fin, StandardCharsets.UTF_8));
                 String text;
                 Matcher matcher;
 
